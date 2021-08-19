@@ -28,6 +28,7 @@ const SubComponent : FC = ()=>{
           <br/>
           <Controller name="password"
                       control={control}
+                      defaultValue=""
                       render={({ field}) =>(
                           <TextField
                               // grabbing (name, control)

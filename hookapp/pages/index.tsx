@@ -47,7 +47,11 @@ console.log('watch variable is ', methods.watch('email'))
         <FormProvider  {...methods}>
           <form onSubmit={methods.handleSubmit(formSubmitHandler)}>
           <SubComponent/>
+            <br/>
+            <br/>
             <SubComponent1/>
+            <br/>
+            <br/>
             <input type="submit"/>
           </form>
         </FormProvider>

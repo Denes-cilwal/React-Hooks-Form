@@ -17,6 +17,7 @@ const SubComponent2 : FC = ()=>{
                                 // grabbing (name, control, defaultValue)
                                 // and passing here to text-field component
                                 {...field}
+                                defaultValue = "parv"
                                 label = "First Name"
                                 variant="outlined"
                                 error={!!errors.FirstName}
@@ -33,6 +34,7 @@ const SubComponent2 : FC = ()=>{
                                 // grabbing (name, control)
                                 // and passing here to text-field component
                                 {...field}
+                                defaultValue = ""
                                 label = "Last Name"
                                 variant="outlined"
                                 error={!!errors.LastName}
