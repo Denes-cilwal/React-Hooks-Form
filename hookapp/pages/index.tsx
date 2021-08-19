@@ -3,6 +3,7 @@ import styles from '../styles/Home.module.css'
 import {FC} from 'react';
 import * as yup from 'yup';
 import {yupResolver} from "@hookform/resolvers/yup";
+import {TextField} from "@material-ui/core";
 
 interface IFormInput {
   email : string;
@@ -18,6 +19,7 @@ const schema = yup.object().shape({
 const Home: FC = () => {
   const {
     register,
+      control,
     handleSubmit,
     watch,
     formState:{errors}} = useForm<IFormInput>(
@@ -42,10 +44,40 @@ console.log('watch variable is ', watch('email'))
     <div className={styles.container}>
       <main className={styles.main}>
       <form onSubmit={handleSubmit(formSubmitHandler)}>
-        <input defaultValue="test123@gmail.com" {...register('email')}/>
-        <br/>
-        <br/>
-        <input  {... register('password')}/>
+        {/* to work with UI  Controller */}
+        {/* render a component controller by Controller */}
+        <Controller name="email"
+                    control={control}
+                    defaultValue="test@123@gmail.com"
+                     render={({ field}) =>(
+                         <TextField
+                             // grabbing (name, control, defaultValue)
+                             // and passing here to text-field component
+                             {...field}
+                            label = "Email"
+                             variant="outlined"
+                              error={!!errors.email}
+                             helperText={errors.email ? errors.email.message : ""}
+                         />
+                     ) }
+        />
+          <br/>
+          <br/>
+        <Controller name="password"
+                    control={control}
+                    render={({ field}) =>(
+                        <TextField
+                            // grabbing (name, control)
+                            // and passing here to text-field component
+                            {...field}
+                            type="password"
+                            label = "Password"
+                            variant="outlined"
+                            error={!!errors.password}
+                            helperText={errors.password ? errors.password.message : ""}
+                        />
+                    ) }
+        />
         {/*if error exist in field password show this error*/}
         {errors.password && errors.password?.message&& <span>{errors.password.message}</span>}
         <br/>
